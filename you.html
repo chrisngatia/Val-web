@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>you</title>
+</head>
+<body><body style="display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">
+ 
+
+  <h1>Will you be my valentine 🎉😍😍🥰🥰🥰😘</h1>
+    
+<div style="display: flex; justify-content: center;">
+  <button id="yes-btn" style="width: 50px; height: 40px; border-radius: 20px;">YES</button>
+  <button id="no-btn" style="width: 50px; height: 40px; border-radius: 20px; position: absolute;">no</button>
+</div>
+
+<script>
+  const yesBtn = document.getElementById('yes-btn');
+  const noBtn = document.getElementById('no-btn');
+
+  yesBtn.onclick = () => {
+    setInterval(() => {
+      const bubble = document.createElement('div');
+      bubble.style.position = 'absolute';
+      bubble.style.width = '10px';
+      bubble.style.height = '10px';
+      bubble.style.borderRadius = '50%';
+      bubble.style.background = 'red';
+      bubble.style.left = yesBtn.offsetLeft + yesBtn.offsetWidth / 2 + 'px';
+      bubble.style.top = yesBtn.offsetTop + yesBtn.offsetHeight / 2 + 'px';
+      document.body.appendChild(bubble);
+
+      let dirX = Math.random() * 2 - 1;
+      let dirY = Math.random() * 2 - 1;
+      let speed = Math.random() * 2 + 1;
+
+      setInterval(() => {
+        let left = parseInt(bubble.style.left);
+        let top = parseInt(bubble.style.top);
+        bubble.style.left = left + dirX * speed + 'px';
+        bubble.style.top = top + dirY * speed + 'px';
+
+        if (left < 0 || left > window.innerWidth - 10) dirX *= -1;
+        if (top < 0 || top > window.innerHeight - 10) dirY *= -1;
+      }, 16);
+    }, 100);
+
+    noBtn.style.display = 'none';
+  };
+
+  let noBtnDirX = 1;
+  let noBtnDirY = 1;
+  let noBtnTop = 200;
+  let noBtnLeft = 200;
+  setInterval(() => {
+    if (noBtnDirX === 1) {
+      noBtnLeft += 5;
+      if (noBtnLeft > window.innerWidth - 50) noBtnDirX = -1;
+    } else {
+      noBtnLeft -= 5;
+      if (noBtnLeft < 0) noBtnDirX = 1;
+    }
+
+    if (noBtnDirY === 1) {
+      noBtnTop += 5;
+      if (noBtnTop > window.innerHeight - 50) noBtnDirY = -1;
+    } else {
+      noBtnTop -= 5;
+      if (noBtnTop < 0) noBtnDirY = 1;
+    }
+
+    noBtn.style.top = noBtnTop + 'px';
+    noBtn.style.left = noBtnLeft + 'px';
+  }, 50);
+</script>
+  <a href="val.html">ok</a>
+
+</body>
+</html>
